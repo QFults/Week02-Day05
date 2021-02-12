@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form>
+    <p>
+      <label for="name">name</label>
+      <input type="text" id="name">
+    </p>
+    <p>
+      <label for="link">link</label>
+      <input type="text" id="link">
+    </p>
+    <button id="createBtn">Create Button</button>
+  </form>
+  <div id="buttons"></div>
+  <div id="gifs"></div>
+
+  <script>
+
+    document.getElementById('createBtn').addEventListener('click', event => {
+      event.preventDefault()
+
+      let btnElem = document.createElement('button')
+      btnElem.className = 'btn'
+      btnElem.textContent = document.getElementById('name').value
+      btnElem.dataset.link = document.getElementById('link').value
+      document.getElementById('buttons').append(btnElem)
+
+      document.getElementById('name').value = ''
+      document.getElementById('link').value = ''
+    })
+
+    document.addEventListener('click', event => {
+      if (event.target.className === 'btn') {
+        let gifElem = document.createElement('img')
+        gifElem.src = event.target.dataset.link
+        gifElem.alt = event.target.textContent
+        document.getElementById('gifs').append(gifElem)
+      }
+    })
+
+  </script>
+</body>
+</html>
