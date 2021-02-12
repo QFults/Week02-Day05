@@ -7,16 +7,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    .red {
+    /* .red {
       color: red;
-    }
+    } */
   </style>
 </head>
 
 <body>
   <!-- <h1 id="heading" class="something">Hello World!</h1>
   <h1 id="heading1" class="hotdog">Hello World!</h1> -->
+
+  <!-- <div id="myDiv" class="hotdog"></div>
+  <div class="hotdog"></div> -->
+
+  <form>
+    <p>
+      <label for="name">name</label>
+      <input type="text" id="name">
+    </p>
+    <p>
+      <label for="message">message</label>
+      <input type="text" id="message">
+    </p>
+    <button id="createBtn">Create Button</button>
+  </form>
+  <hr>
+  <div id="buttons">
+    <button class="btn" data-message="This is the first button">First Button</button>
+    <button class="btn" data-message="This is the second button">Second Button</button>
+  </div>
   <script>
+
+    document.getElementById('createBtn').addEventListener('click', event => {
+      event.preventDefault()
+      let btnElem = document.createElement('button')
+      btnElem.className = 'btn'
+      btnElem.textContent = document.getElementById('name').value
+      btnElem.dataset.message = document.getElementById('message').value
+      document.getElementById('buttons').append(btnElem)
+
+      document.getElementById('name').value = ''
+      document.getElementById('message').value = ''
+    })
+
+    document.addEventListener('click', event => {
+      if (event.target.className === 'btn') {
+        console.log(event.target.dataset.message)
+      }
+    })
+    // console.log(document.getElementsByClassName('hotdog'))
+    // console.log(document.querySelector('.hotdog'))
 
     // document.getElementById('heading').style.color = 'red'
     // document.getElementById('heading').className = 'red'
